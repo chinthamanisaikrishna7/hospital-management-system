@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Patient Management</h1>
+
+    <!-- Form to Add/Edit Patient -->
+    <form id="patientForm">
+        <input type="hidden" id="patientId"> <!-- Hidden field for editing -->
+        <input type="text" id="name" placeholder="Name" required>
+        <input type="number" id="age" placeholder="Age" required>
+        <select id="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+        <input type="text" id="contactNumber" placeholder="Contact Number" required>
+        <input type="email" id="email" placeholder="Email">
+        <input type="text" id="address" placeholder="Address" required>
+        <select id="bloodGroup">
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+        </select>
+        <input type="text" id="disease" placeholder="Disease">
+        <button type="submit">Add Patient</button>
+    </form>
+
+    <!-- Table to Display Patients -->
+    <h2>Patients List</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Blood Group</th>
+                <th>Disease</th>
+                <th>Actions</th> <!-- New column for buttons -->
+            </tr>
+        </thead>
+        <tbody id="patientList"></tbody>
+    </table>
+
+    <script src="script.js"></script>
+</body>
+</html>
