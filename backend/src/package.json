@@ -1,0 +1,16 @@
+{
+  "name": "src",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [ "hospital-management",
+  "healthcare",
+  "nodejs",
+  "medical-software",
+  "appointment-scheduling"],
+  "author": "Chinthamani Sai Krishna",
+  "license": "ISC",
+  "description": "A comprehensive Hospital Management System (HMS) designed to streamline hospital operations, manage patient records, schedule appointments, process billing, and generate insightful reports. Built with secure authentication, role-based access, and a user-friendly interface"
+}
