@@ -16,8 +16,10 @@
   "license": "ISC",
   "description": "A comprehensive Hospital Management System (HMS) designed to streamline hospital operations, manage patient records, schedule appointments, process billing, and generate insightful reports. Built with secure authentication, role-based access, and a user-friendly interface",
   "dependencies": {
+    "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.12.1"
   }
 }
