@@ -2,8 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("patientForm");
     const patientList = document.getElementById("patientList");
     const patientIdField = document.getElementById("patientId");
-
-    // ✅ Fetch Patients from API
+    
     async function fetchPatients() {
         try {
             const res = await fetch("http://localhost:3000/api/patient");
@@ -31,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // ✅ Add or Update Patient
+    //Add or Update Patient
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
         const patientData = {
@@ -73,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // ✅ Edit Patient - Prefill the form
+    //  Edit Patient
     window.editPatient = async (id) => {
         try {
             const res = await fetch(`http://localhost:3000/api/patient/${id}`);
@@ -94,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // ✅ Delete Patient
+    //  Delete Patient
     window.deletePatient = async (id) => {
         if (confirm("Are you sure you want to delete this patient?")) {
             try {
