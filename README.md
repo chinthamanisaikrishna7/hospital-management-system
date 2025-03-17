@@ -40,21 +40,20 @@ The **Hospital Management System (HMS)** is a software solution designed to stre
 
 ## Technology Stack
 - **Frontend**: React.js / Angular / Vue.js
-- **Backend**: Node.js / Django / Spring Boot
-- **Database**: MySQL / PostgreSQL / MongoDB
+- **Backend**: Node.js
+- **Database**: MongoDB
 - **Authentication**: JWT / OAuth
 - **Deployment**: AWS / Azure / Firebase
 
 ## Installation & Setup
 1. **Clone the Repository**
    ```sh
-   git clone https://github.com/your-username/hospital-management-system.git
+   git clone https://github.com/chinthamanisaikrishna7/hospital-management-system.git
    cd hospital-management-system
    ```
 2. **Install Dependencies**
    ```sh
    npm install   # For Node.js backend
-   pip install -r requirements.txt  # For Django backend
    ```
 3. **Configure Database**
    - Update database credentials in `config.js` or `settings.py`.
@@ -98,5 +97,5 @@ The **Hospital Management System (HMS)** is a software solution designed to stre
 
 
 ## Contact
-For any inquiries or support, please contact saikrishnaias2004@gmail.com or open an issue in the repository.
+For any inquiries or support, please contact saikrishnaias2004@gmail.com or adityaujjawalthakur@gmail.com or amoghabhat7403@gmail.com open an issue in the repository.
 
