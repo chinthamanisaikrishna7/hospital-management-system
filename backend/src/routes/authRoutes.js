@@ -1,5 +1,5 @@
 const express = require ("express");
-const bcrypt = require ("bcryptsjs");
+const bcrypt = require ("bcryptjs");
 const User = require ("../models/Users");
 const jwt = require("jsonwebtoken");
 
@@ -21,11 +21,14 @@ router.post("/register", async (req,res) => {
 router.post("/login", async (req,res)=>{
     const {username,password} = req.body;
     try{
-        const user = await User.find({username});
+        const user = await User.findOne({username});
         if(!user){
             return res.status(400).json({error: "Invalid Credentials"});
         }
         else{
+            if (!user) {
+                return res.status(400).json({ error: "Invalid Credentials" });
+              }
             const isMatched = await bcrypt.compare(password,user.password);
             if(!isMatched){
                 return res.status(400).json({error: "Invalid Credentials"});
@@ -34,10 +37,10 @@ router.post("/login", async (req,res)=>{
                 const token = jwt.sign(
                     { userId: user._id, role: user.role },
                     "yourSecretKey",
-                    { expiresIn: "1h" }
+                    { expiresIn: "30m" }
                   );
               
-                  res.json({ token, role: user.role });
+                  res.json({ token, role: user.role || "user" });
             }
         }
         
