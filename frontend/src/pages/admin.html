@@ -1,0 +1,28 @@
+<input type="text" id="patientId" placeholder="Enter Patient ID">
+<button onclick="searchPatient()">Search</button>
+<div id="searchResult"></div>
+
+<script>
+async function searchPatient() {
+    const token = localStorage.getItem("token");
+    const patientId = document.getElementById("patientId").value;
+
+    try {
+        const response = await fetch(`http://localhost:5000/api/patient/${patientId}`, {
+            headers: { "Authorization": `Bearer ${token}` }
+        });
+        const data = await response.json();
+
+        if (response.ok) {
+            document.getElementById("searchResult").innerHTML = `
+                <p><b>Name:</b> ${data.name}</p>
+                <p><b>Condition:</b> ${data.condition}</p>
+            `;
+        } else {
+            alert("Patient not found.");
+        }
+    } catch (error) {
+        console.error("Search Error:", error);
+    }
+}
+</script>

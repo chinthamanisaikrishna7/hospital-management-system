@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Patient Dashboard</h1>
+    <p>Welcome, Patient! Here are your details:</p>
+    <div id="patientInfo"></div>
+    <button onclick="logout()">Logout</button>
+    
+    <script src="dashboard.js"></script>
+    <script>
+        async function fetchPatientData(patientId) {
+    const token = localStorage.getItem("token");
+    if (!token) return alert("Unauthorized!");
+
+    try {
+        const res = await fetch(`http://localhost:5000/api/patient/${patientId}`, {
+            headers: { "Authorization": `Bearer ${token}` }
+        });
+
+        if (!res.ok) {
+            return alert("Error fetching patient details.");
+        }
+
+        const patient = await res.json();
+
+        // Dynamically create a table for the patient details
+        let patientInfo = `
+            <table border="1">
+                <tr><th>Field</th><th>Value</th></tr>
+                <tr><td><b>Name</b></td><td>${patient.name}</td></tr>
+                <tr><td><b>Age</b></td><td>${patient.age}</td></tr>
+                <tr><td><b>Gender</b></td><td>${patient.gender}</td></tr>
+                <tr><td><b>Contact Number</b></td><td>${patient.contactNumber}</td></tr>
+                <tr><td><b>Email</b></td><td>${patient.email || "N/A"}</td></tr>
+                <tr><td><b>Address</b></td><td>${patient.address}</td></tr>
+                <tr><td><b>Blood Group</b></td><td>${patient.bloodGroup}</td></tr>
+                <tr><td><b>Disease</b></td><td>${patient.disease || "N/A"}</td></tr>
+                <tr><td><b>Created At</b></td><td>${new Date(patient.createdAt).toLocaleDateString()}</td></tr>
+            </table>
+        `;
+
+        document.getElementById("patientInfo").innerHTML = patientInfo;
+
+    } catch (err) {
+        console.error("Error:", err);
+        alert("An error occurred while fetching patient details.");
+    }
+}
+
+        // async function fetchPatientData() {
+        //     const token = localStorage.getItem("token");
+        //     if (!token) return alert("Unauthorized!");
+
+        //     try {
+        //         const res = await fetch("http://localhost:5000/api/patient/me", {
+        //             headers: { "Authorization": `Bearer ${token}` }
+        //         });
+        //         if (res.ok) {
+        //             const data = await res.json();
+        //             document.getElementById("patientInfo").innerHTML = `
+        //                 <p><b>Name:</b> ${data.name}</p>
+        //                 <p><b>Age:</b> ${data.age}</p>
+        //                 <p><b>Condition:</b> ${data.condition}</p>
+        //             `;
+        //         } else {
+        //             alert("Error fetching details.");
+        //         }
+        //     } catch (err) {
+        //         console.error("Error:", err);
+        //     }
+        // }
+
+        fetchPatientData();
+    </script>
+</body>
+</html>

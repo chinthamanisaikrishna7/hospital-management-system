@@ -39,11 +39,10 @@ The **Hospital Management System (HMS)** is a software solution designed to stre
 - **Use Case**: Generate hospital revenue and operational reports.
 
 ## Technology Stack
-- **Frontend**: React.js / Angular / Vue.js
+- **Frontend**: React.js
 - **Backend**: Node.js
 - **Database**: MongoDB
-- **Authentication**: JWT / OAuth
-- **Deployment**: AWS / Azure / Firebase
+- **Authentication**: JWT
 
 ## Installation & Setup
 1. **Clone the Repository**
@@ -97,5 +96,4 @@ The **Hospital Management System (HMS)** is a software solution designed to stre
 
 
 ## Contact
-For any inquiries or support, please contact saikrishnaias2004@gmail.com or adityaujjawalthakur@gmail.com or amoghabhat7403@gmail.com open an issue in the repository.
-
+For any inquiries or support, please contact saikrishnaias2004@gmail.com or adityaujjawalthakur@gmail.com or adarshgaonkar23@gmail.com or amoghabhat7403@gmail.com or open an issue in the repository.
