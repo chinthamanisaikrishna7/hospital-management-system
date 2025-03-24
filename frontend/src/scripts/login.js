@@ -22,7 +22,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             if (data.role === "admin") window.location.href = "admin.html";
             else if (data.role === "doctor") window.location.href = "doctor.html";
             else if (data.role === "receptionist") window.location.href = "receptionist.html";
-            else window.location.href = "patient.html"; // Default for patients
+            else window.location.href = "../pages/patient.html"; // Default for patients
         } else {
             alert("Login Failed: " + data.message);
         }
