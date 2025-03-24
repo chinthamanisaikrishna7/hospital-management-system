@@ -126,7 +126,8 @@ const router = express.Router();
 // TESTING 3 REGISTER
 // -------------------------------------------------------------------------------------
 router.post("/register", async (req, res) => {
-    const { username, password, role } = req.body;
+    console.log("Received registration request:", req.body);
+    const { username, password, role , patientDetails} = req.body;
     try {
         console.log("Checking if user exists...");
         const existingUser = await User.findOne({ username });
@@ -143,10 +144,28 @@ router.post("/register", async (req, res) => {
 
         await newUser.save();
         console.log(" User registered successfully:", username);
-        if (role === "patient") {
-            const { name, age, gender, contactNumber, email, address, bloodGroup, disease } = req.body;
 
-            if (!name || !age || !gender || !contactNumber || !address || !bloodGroup) {
+        console.log("Checking role:", role);
+        console.log("Extracted patientDetails:", patientDetails);
+
+
+        if (role === "patient") {
+            if (!patientDetails) {
+                return res.status(400).json({ error: "Missing patient details!" });
+            }
+            const { name, age, gender, contactNumber, email, address, bloodGroup, disease } = patientDetails;
+
+            if (
+                !name?.trim() || 
+                age == null || 
+                !gender?.trim() || 
+                !contactNumber?.trim() || 
+                !address?.trim() || 
+                !bloodGroup?.trim()
+            ) {
+                console.error("❌ Some required patient details are missing!", {
+                    name, age, gender, contactNumber, address, bloodGroup
+                });
                 return res.status(400).json({ error: "Missing required patient details!" });
             }
 

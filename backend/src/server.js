@@ -11,6 +11,7 @@ const authRoutes = require("./routes/authRoutes");
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use("/api/patient", patient_routes);
 app.use("/api/auth", authRoutes);
 // app.use("/users", userRoutes);
