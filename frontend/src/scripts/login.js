@@ -19,9 +19,9 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             alert("Login Successful!");
 
             // Redirect based on role
-            if (data.role === "admin") window.location.href = "admin.html";
-            else if (data.role === "doctor") window.location.href = "doctor.html";
-            else if (data.role === "receptionist") window.location.href = "receptionist.html";
+            if (data.role === "admin") window.location.href = "../pages/admin.html";
+            else if (data.role === "doctor") window.location.href = "../pages/doctor.html";
+            else if (data.role === "receptionist") window.location.href = "../pages/receptionist.html";
             else window.location.href = "../pages/patient.html"; // Default for patients
         } else {
             alert("Login Failed: " + data.message);
