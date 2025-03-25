@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { createpatient, getAllpatients, getpatientById, updatepatient, deletepatient } = require("../crud_operations/patient_crud");
+const { createpatient, getAllpatients, getpatientById, updatepatient, deletepatient,personalinfo } = require("../crud_operations/patient_crud");
 const authMiddleware = require ("../middleware/authMiddleware");
 const roleMiddleware = require("../middleware/roleMiddleware");
 
@@ -15,5 +15,6 @@ router.get("/getallpatients", authMiddleware, roleMiddleware(["admin", "doctor",
 router.get("/:id", authMiddleware, roleMiddleware(["admin", "doctor","receptionist","patient"]), getpatientById);
 router.put("/:id", authMiddleware, roleMiddleware(["admin", "doctor"]),  updatepatient);
 router.delete("/:id", authMiddleware, roleMiddleware(["admin"]), deletepatient  );
+router.get("/me", authMiddleware, roleMiddleware(["patient"]),personalinfo)
 
 module.exports = router;

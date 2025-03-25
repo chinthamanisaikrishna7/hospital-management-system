@@ -1,12 +1,13 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
+    margin: 50px;
 }
-button {
-    margin: 10px;
+input, select, button {
+    display: block;
+    margin: 10px auto;
     padding: 10px;
 }
-input, select {
-    margin: 5px;
-    padding: 8px;
+button {
+    cursor: pointer;
 }

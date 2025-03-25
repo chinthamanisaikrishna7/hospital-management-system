@@ -89,3 +89,16 @@ exports.createpatient = async (req, res) => {
       res.status(500).json({ error: err.message });
   }
   };
+
+ exports.personalinfo= async (req, res) => {
+    try {
+        const patient = await Patient.findOne({ userId: req.user.id }); // `req.user.id` comes from JWT
+        if (!patient) {
+            return res.status(404).json({ error: "Patient not found" });
+        }
+        res.json(patient);
+    } catch (error) {
+        res.status(500).json({ error: "Server error" });
+        res.status(500).json({ error: err.message });
+    }
+};
