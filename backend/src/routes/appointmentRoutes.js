@@ -9,7 +9,7 @@ const router = express.Router();
 router.post("/book", authMiddleware, roleMiddleware(["patient"]), bookAppointment);
 
 // ✅ 2. Route to get appointments for a patient (Only "patient" can see their appointments)
-router.get("/patient/:id", authMiddleware, roleMiddleware(["patient"]), getPatientAppointments);
+router.get("/history", authMiddleware, roleMiddleware(["patient"]), getPatientAppointments);
 
 // ✅ 3. Route to get appointments for a doctor (Only "doctor" can see their appointments)
 router.get("/doctor/:id", authMiddleware, roleMiddleware(["doctor"]), getDoctorAppointments);

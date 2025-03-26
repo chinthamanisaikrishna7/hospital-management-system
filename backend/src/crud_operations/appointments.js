@@ -1,6 +1,7 @@
 const Appointment = require("../models/appointmentsentry");
 const Doctor = require("../models/doctor");
 const Patient = require("../models/patient");
+const mongoose = require("mongoose");
 
 
 exports.bookAppointment =  async (req, res) => {
@@ -67,12 +68,21 @@ exports.getDoctorsBySpecialization = async (req, res) => {
 // ✅ 2. Get all appointments for a patient
 exports.getPatientAppointments = async (req, res) => {
   try {
-      const patientId = req.params.id;
-      const appointments = await Appointment.find({ patientId }).populate("doctorId", "name specialization");
-
+      // const patientId = req.params.id;
+      // const patientId = req.user.userId;  
+      console.log("🟢 JWT User ID:", req.user.userId);
+      // const patientId = new mongoose.Types.ObjectId(req.user.userId);
+      const patient = await Patient.findOne({ userId: req.user.userId });
+      if (!patient) {
+        return res.status(404).json({ message: "Patient not found" });
+    }
+    console.log("✅ Extracted Patient ID:", patient._id);
+      const appointments = await Appointment.find({ patientId: patient._id }).populate("doctorId", "name specialization");
+      console.log("Fetched Appointments:", appointments);
       res.json(appointments);
   } catch (err) {
-      res.status(500).json({ message: err.message });
+    console.error("Error fetching appointment history:", err);
+    res.status(500).json({ message: "Server error" });
   }
 };
 

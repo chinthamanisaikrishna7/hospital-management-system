@@ -126,10 +126,8 @@ function applyStyles() {
 function showSection(section) {
     alert("This will show the " + section + " section (Implement later)");
 }
-
-fetchPatientData();
-
 function logout() {
     localStorage.removeItem("token");
     window.location.href = "../pages/login.html";
 }
+fetchPatientData();
