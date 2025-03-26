@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment</title>
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Book an Appointment</h2>
+        <form id="appointmentForm">
+            <!-- Specialization Dropdown -->
+            <label for="specialization">Specialization:</label>
+            <select id="specialization" name="specialization" onchange="fetchDoctors()">
+                <option value="">Select Specialization</option>
+                <!-- <option value="Cardiologist">Cardiologist</option>
+                <option value="Dermatologist">Dermatologist</option>
+                <option value="Oncologist">Oncologist</option>
+                <option value="Gynecologist">Gynecologist</option> -->
+                <option value="Gynecology">Gynecology</option>
+                <option value="Orthopedics">Orthopedics</option>
+                <option value="Dermatology">Dermatology</option>
+                <option value="Neurology">Neurology</option>
+                <option value="Pediatrics">Pediatrics</option>
+                <option value="Ophthalmology">Ophthalmology</option>
+                <option value="Psychiatry">Psychiatry</option>
+                <option value="General Surgery">General Surgery</option>
+                <option value="Internal Medicine">Internal Medicine</option>
+                <option value="Cardiology">Cardiology</option>
+                <option value="Oncology">Oncology</option>
+                <option value="ENT">ENT</option>
+                <option value="Pulmonology">Pulmonology</option>
+                <option value="Urology">Urology</option>
+                <option value="Rheumatology">Rheumatology</option>
+                <option value="Endocrinology">Endocrinology</option>
+                <option value="Gastroenterology">Gastroenterology</option>
+                <option value="Hematology">Hematology</option>
+                <option value="Nephrology">Nephrology</option>
+                <option value="Radiology">Radiology</option>
+                <option value="Anesthesiology">Anesthesiology</option>
+                <option value="Pathology">Pathology</option>
+                <option value="Emergency Medicine">Emergency Medicine</option>
+                <option value="Physical Medicine and Rehabilitation">Physical Medicine and Rehabilitation</option>
+                <option value="Allergy and Immunology">Allergy and Immunology</option>
+                <option value="Forensic Medicine">Forensic Medicine</option>
+                <option value="Nuclear Medicine">Nuclear Medicine</option>
+                <option value="Transplantation Surgery">Transplantation Surgery</option>
+                <option value="Dental Surgery">Dental Surgery</option>
+                <option value="Critical Care Medicine">Critical Care Medicine</option>
+            </select>
+
+            <!-- Doctors Dropdown (Dynamic) -->
+            <label for="doctor">Doctors Available:</label>
+            <select id="doctor" name="doctor" onchange="updateFee()">
+                <option value="">Select Doctor</option>
+            </select>
+
+            <!-- Consultancy Fee (Dynamic) -->
+            <label for="fee">Consultancy Fee:</label>
+            <input type="text" id="fee" name="fee" readonly>
+
+            <!-- Appointment Date -->
+            <label for="date">Appointment Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <!-- Appointment Time -->
+            <label for="time">Appointment Time:</label>
+            <select id="time" name="time">
+                <option value="">Select Time</option>
+                <option value="10:00 AM">10:00 AM</option>
+                <option value="12:00 PM">12:00 PM</option>
+                <option value="2:00 PM">2:00 PM</option>
+                <option value="4:00 PM">4:00 PM</option>
+            </select>
+
+            <!-- Submit Button -->
+            <button type="submit">Book Appointment</button>
+        </form>
+    </div>
+
+    <script src="../../scripts/appointments/book.js"></script>
+</body>
+</html>

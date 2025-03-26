@@ -89,16 +89,58 @@ exports.createpatient = async (req, res) => {
       res.status(500).json({ error: err.message });
   }
   };
+// ---------------------------------------------------------------------------------------------------
+// DISTURBED CODE NOT WORKING
+// ----------------------------------------------------------------------------------------------
+//  exports.personalinfo= async (req, res) => {
+//   console.log("Authenticated User in /me:", req.user); 
+//     try {
+//       console.log("🔍 Decoded Token:", req.user);
+//       if (!req.user ) {
+//         console.error("❌ User ID is missing in token OR req.user is undefined.");
+//         return res.status(400).json({ error: "User ID is missing in token" });
+//     }
+//     console.log("🔍 Searching Patient with userId:", req.user.userId);
+//     const patient = await Patient.findOne({ userId });
+//         // const patient = await Patient.findOne({ userId: req.user.id }); // `req.user.id` comes from JWT  OG
+//         //  const patient = await Patient.findOne({ userId: req.user.userId }); // ✅ Fix
+//         //const userId = new mongoose.Types.ObjectId(req.user.userId); // ✅ Convert to ObjectId
+        
+//        // const patient = await Patient.findOne({ userId }).lean();
+//          if (!patient) {
+//           console.error("❌ Patient not found for userId:", req.user.userId);
+//           return res.status(404).json({ error: "Patient not found" });
+//       }
+//       console.log("✅ Patient Data Found:", patient);
+//         res.json(patient);
+//     } catch (error) {
+//         res.status(500).json({ error: "Server error" });
+//         res.status(500).json({ error: err.message });
+//     }
+// };
+// ------------------------------------------------------------------------------------------------------
+// DISTURBED CODE END
+// ------------------------------------------------------------------------------------------------------
 
- exports.personalinfo= async (req, res) => {
-    try {
-        const patient = await Patient.findOne({ userId: req.user.id }); // `req.user.id` comes from JWT
-        if (!patient) {
-            return res.status(404).json({ error: "Patient not found" });
-        }
-        res.json(patient);
-    } catch (error) {
-        res.status(500).json({ error: "Server error" });
-        res.status(500).json({ error: err.message });
-    }
+
+
+
+// -----------------------------------------------------------------------------------------------------------
+// PROPER WORKING CODE
+// PLEASE DO NOT TOUCH THIS IN FUTURE IF ANY CHANGE REQUIRED THEN COMMENT THIS COPY THIS AND THEN DO THE CHANGES THERE AND IF NOT WORKING WE CAN REVERT BACK HERE
+// ----------------------------------------------------------------------------------------------------------
+exports.personalinfo= async (req, res) => {
+  try {
+      const patient = await Patient.findOne({ userId: req.user.id }); // `req.user.id` comes from JWT
+      if (!patient) {
+          return res.status(404).json({ error: "Patient not found" });
+      }
+      res.json(patient);
+  } catch (error) {
+      res.status(500).json({ error: "Server error" });
+      res.status(500).json({ error: err.message });
+  }
 };
+// --------------------------------------------------------------------------------------------------------------------
+// PROPER WORKING CODE END
+// -----------------------------------------------------------------------------------------------------------------------------

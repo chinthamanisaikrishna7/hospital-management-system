@@ -16,7 +16,9 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         if (response.ok) {
             localStorage.setItem("token", data.token);
             localStorage.setItem("role", data.role); // Store user role for RBAC
+            localStorage.setItem("patientId", data.patientId);
             alert("Login Successful!");
+
 
             // Redirect based on role
             if (data.role === "admin") window.location.href = "../pages/admin.html";
