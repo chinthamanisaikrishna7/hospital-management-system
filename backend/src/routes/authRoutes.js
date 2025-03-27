@@ -3,6 +3,7 @@ const bcrypt = require ("bcryptjs");
 const User = require ("../models/Users");
 const jwt = require("jsonwebtoken");
 const Patient = require("../models/patient");
+const Doctor = require("../models/doctor");
 
 const router = express.Router();
 
@@ -221,8 +222,15 @@ router.post("/login", async (req, res) => {
                 return res.json({ token, role: user.role, message: "No data available. Please complete registration." });
             }
         }
+        if (user.role === "doctor") {
+            const doctorProfile = await Doctor.findOne({ userId: user._id });
+            if (!doctorProfile) {
+              return res.status(400).json({ message: "Doctor profile not found" });
+            }
+            return  res.json({ token, role: user.role, doctorId: doctorProfile._id  });
+          }
 
-        res.json({ token, role: user.role });
+          res.json({ token, role: user.role });
     }catch (e) {
         console.error("Login Error:", e);
         res.status(500).json({ error: "Error logging in", details: e.message });

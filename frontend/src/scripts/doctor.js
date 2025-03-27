@@ -1,3 +1,4 @@
+console.log("✅ doctor.js script is running!")
 if (!localStorage.getItem("token")) {
     window.location.href = "../pages/login.html";
 }
@@ -112,7 +113,6 @@ async function updatePatient() {
         console.error("Error:", err);
     }
 }
-
 
 // Logout
 function logout() {
