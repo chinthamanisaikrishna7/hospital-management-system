@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------------
+// WORKING CODE STARTS
+// ----------------------------------------------------------------------
+
 if (!localStorage.getItem("token")) {
     window.location.href = "../login.html";
 }
@@ -73,52 +77,70 @@ function renderDashboard(patient) {
 function applyStyles() {
     const style = document.createElement("style");
     style.innerHTML = `
-        body {
-            display: flex;
-            font-family: Arial, sans-serif;
-            margin: 0;
-        }
-        .sidebar {
-            width: 250px;
-            background-color: #2c3e50;
-            color: white;
-            padding: 20px;
-            height: 100vh;
-            position: fixed;
-        }
-        .sidebar h2 {
-            text-align: center;
-        }
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-        .sidebar ul li {
-            padding: 15px;
-            text-align: center;
-            cursor: pointer;
-            border-bottom: 1px solid gray;
-        }
-        .sidebar ul li:hover {
-            background-color: #34495e;
-        }
-        .logout-btn {
-            background-color: red;
-            color: white;
-            border: none;
-            padding: 10px;
-            width: 100%;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        .logout-btn:hover {
-            background-color: darkred;
-        }
-        .content {
-            margin-left: 270px;
-            padding: 20px;
-            width: 100%;
-        }
+body {
+    display: flex;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f4f4;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    height: 100vh;
+    position: fixed;
+}
+
+.sidebar h2 {
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    border-bottom: 1px solid gray;
+}
+
+.sidebar ul li:hover {
+    background-color: #34495e;
+}
+
+.logout-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.logout-btn:hover {
+    background-color: darkred;
+}
+
+/* Content */
+.content {
+    margin-left: 270px; /* Adjusted to prevent overlap */
+    padding: 20px;
+    width: 100%;
+}
+
+#patientDetails {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
     `;
     document.head.appendChild(style);
 }
@@ -131,3 +153,60 @@ function logout() {
     window.location.href = "../pages/login.html";
 }
 fetchPatientData();
+
+// -----------------------------------------------------------------------------
+// END OF WORKING CODE - OG
+// ----------------------------------------------------------------------
+
+// if (!localStorage.getItem("token")) {
+//     window.location.href = "../pages/login.html";
+// }
+
+// async function fetchPatientData() {
+//     const token = localStorage.getItem("token");
+//     if (!token) {
+//         console.error("❌ No token found in localStorage");
+//         alert("No token found! Please log in again.");
+//         window.location.href = "../pages/login.html";
+//         return;
+//     }
+    
+//     console.log("🔍 Sending Token in Request:", token);
+//     try {
+//         const response = await fetch("http://localhost:5000/api/patient/me", {
+//             method: "GET",
+//             headers: { "Authorization": `Bearer ${token}` }
+//         });
+
+//         const data = await response.json();
+
+//         if (response.ok) {
+//             document.getElementById("patientName").textContent = data.name;
+//             document.getElementById("patientDetails").innerHTML = `
+//                 <p><strong>Name:</strong> ${data.name}</p>
+//                 <p><strong>Age:</strong> ${data.age}</p>
+//                 <p><strong>Gender:</strong> ${data.gender}</p>
+//                 <p><strong>Contact:</strong> ${data.contactNumber}</p>
+//                 <p><strong>Email:</strong> ${data.email}</p>
+//                 <p><strong>Address:</strong> ${data.address}</p>
+//                 <p><strong>Blood Group:</strong> ${data.bloodGroup}</p>
+//                 <p><strong>Disease:</strong> ${data.disease}</p>
+//             `;
+//         } else {
+//             document.getElementById("patientDetails").innerHTML = "<p>Error fetching data.</p>";
+//         }
+//     } catch (error) {
+//         document.getElementById("patientDetails").innerHTML = "<p>Error fetching data.</p>";
+//     }
+// }
+
+// function showSection(section) {
+//     alert("This will show the " + section + " section (Implement later)");
+// }
+
+// function logout() {
+//     localStorage.removeItem("token");
+//     window.location.href = "../pages/login.html";
+// }
+
+// fetchPatientData();

@@ -1,4 +1,4 @@
-body {
+/* body {
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 50px;
@@ -10,4 +10,76 @@ input, select, button {
 }
 button {
     cursor: pointer;
+} */
+/* Apply background */
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: url('./images/bg_image.jpg') no-repeat center center/cover;
+    color: white;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    margin: 0;
 }
+
+/* Dark overlay for better readability */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Darker overlay */
+    z-index: 1;
+}
+
+/* Container styling */
+.container {
+    background: rgba(255, 255, 255, 0.1); /* Subtle white overlay */
+    padding: 30px;
+    border-radius: 15px;
+    z-index: 2;
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+}
+
+/* Button styles */
+.btn-container {
+    margin-top: 20px;
+}
+
+button {
+    background: #007BFF;
+    color: white;
+    padding: 12px 24px;
+    margin: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s;
+}
+
+button:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+    
+    button {
+        width: 100%;
+        margin: 5px 0;
+    }
+} 
+

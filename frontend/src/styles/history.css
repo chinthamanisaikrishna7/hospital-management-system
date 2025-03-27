@@ -1,0 +1,85 @@
+/* history.css */
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1000px;
+}
+
+/* Grid container for appointments */
+.history-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Exactly 3 cards per row */
+    gap: 15px;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+/* Styling for each appointment card */
+.appointment-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.appointment-card:hover {
+    transform: scale(1.05);
+}
+
+.appointment-card h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #2c3e50;
+}
+
+.appointment-card p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Status badges */
+.status {
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    width: fit-content;
+}
+
+.status.pending {
+    background: #f39c12;
+    color: white;
+}
+
+.status.completed {
+    background: #2ecc71;
+    color: white;
+}
+
+/* Responsive: Adjust to 2 columns for smaller screens */
+@media (max-width: 768px) {
+    .history-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Responsive: Single column on very small screens */
+@media (max-width: 480px) {
+    .history-wrapper {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

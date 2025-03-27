@@ -35,20 +35,22 @@ async function fetchAppointmentHistory() {
             historyContainer.innerHTML = "<p>No appointment history available.</p>";
             return;
         }
-
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("history-wrapper");
         appointments.forEach(appointment => {
             const div = document.createElement("div");
             div.classList.add("appointment-card");
             div.innerHTML = `
+                <h3>${appointment.doctorId?.name || "Unknown"}</h3>
                 <p><strong>Doctor:</strong> ${appointment.doctorId?.name || "Unknown"}</p>
                 <p><strong>Specialization:</strong> ${appointment.doctorId?.specialization || "N/A"}</p>
                 <p><strong>Date:</strong> ${appointment.date}</p>
                 <p><strong>Time:</strong> ${appointment.time}</p>
                 <p><strong>Status:</strong> ${appointment.status}</p>
             `;
-            historyContainer.appendChild(div);
+            wrapper.appendChild(div);
         });
-
+        historyContainer.appendChild(wrapper);
     } catch (error) {
         console.error("Error fetching history:", error);
         alert("Error fetching appointment history.");
