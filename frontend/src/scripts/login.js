@@ -16,7 +16,10 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         if (response.ok) {
             localStorage.setItem("token", data.token);
             localStorage.setItem("role", data.role); // Store user role for RBAC
-            localStorage.setItem("patientId", data.patientId);
+            localStorage.setItem("patientId", data.patientId);        
+            if (data.role === "doctor" && data.doctorId) {
+                localStorage.setItem("doctorId", data.doctorId);
+            }   
             alert("Login Successful!");
 
 

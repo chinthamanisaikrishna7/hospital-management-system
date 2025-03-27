@@ -89,7 +89,13 @@ exports.getPatientAppointments = async (req, res) => {
 // ✅ 3. Get all appointments for a doctor
 exports.getDoctorAppointments = async (req, res) => {
   try {
-      const doctorId = req.params.id;
+       const doctorId = req.params.id;
+      // const { doctorId } = req.user;
+      console.log("Loaded Mongoose Models:", mongoose.modelNames());
+
+      if (!doctorId) {
+        return res.status(400).json({ message: "Doctor ID is required" });
+    }
       const appointments = await Appointment.find({ doctorId }).populate("patientId", "name age gender");
 
       res.json(appointments);

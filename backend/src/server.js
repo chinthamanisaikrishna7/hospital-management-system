@@ -6,6 +6,10 @@ const authRoutes = require("./routes/authRoutes");
 // const userRoutes = require("./routes/userRoutes");
 const doctorRoutes = require("./routes/doctorRoutes");  
 const appointmentRoutes = require("./routes/appointmentRoutes");  
+const Patient=require("./models/patient");
+const Doctor = require("./models/doctor");
+const Appointment= require("./models/appointmentsentry");
+
 
 // const doctorRoutes = require("./routes/doctorRoutes"); // Import doctor routes
  // Register doctor routes
