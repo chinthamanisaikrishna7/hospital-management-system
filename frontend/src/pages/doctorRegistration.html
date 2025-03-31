@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Registration</title>
+    <link rel="stylesheet" href="../styles/doctorRegistration.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Doctor Profile Registration</h2>
+        <form id="doctorRegistrationForm">
+            <input type="hidden" id="userId"> <!-- Store userId from URL -->
+            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <!-- <input type="text" id="specialization" placeholder="Specialization" required> -->
+            <label for="specialization">Specialization:</label>
+            <select id="specialization" name="specialization" required>
+                <option value="">Select Specialization</option>
+                <option value="Gynecology">Gynecology</option>
+                <option value="Orthopedics">Orthopedics</option>
+                <option value="Dermatology">Dermatology</option>
+                <option value="Neurology">Neurology</option>
+                <option value="Pediatrics">Pediatrics</option>
+                <option value="Ophthalmology">Ophthalmology</option>
+                <option value="Psychiatry">Psychiatry</option>
+                <option value="General Surgery">General Surgery</option>
+                <option value="Internal Medicine">Internal Medicine</option>
+                <option value="Cardiology">Cardiology</option>
+                <option value="Oncology">Oncology</option>
+                <option value="ENT">ENT</option>
+                <option value="Pulmonology">Pulmonology</option>
+                <option value="Urology">Urology</option>
+                <option value="Rheumatology">Rheumatology</option>
+                <option value="Endocrinology">Endocrinology</option>
+                <option value="Gastroenterology">Gastroenterology</option>
+                <option value="Hematology">Hematology</option>
+                <option value="Nephrology">Nephrology</option>
+                <option value="Radiology">Radiology</option>
+                <option value="Anesthesiology">Anesthesiology</option>
+                <option value="Pathology">Pathology</option>
+                <option value="Emergency Medicine">Emergency Medicine</option>
+                <option value="Physical Medicine and Rehabilitation">Physical Medicine and Rehabilitation</option>
+                <option value="Allergy and Immunology">Allergy and Immunology</option>
+                <option value="Forensic Medicine">Forensic Medicine</option>
+                <option value="Nuclear Medicine">Nuclear Medicine</option>
+                <option value="Transplantation Surgery">Transplantation Surgery</option>
+                <option value="Dental Surgery">Dental Surgery</option>
+                <option value="Critical Care Medicine">Critical Care Medicine</option>
+            </select>
+            <input type="number" id="fees" placeholder="Consultation Fees" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script src="../scripts/doctorRegistration.js"></script>
+</body>
+</html>
