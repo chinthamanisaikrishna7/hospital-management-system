@@ -1,0 +1,132 @@
+/* admin.css */
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+h2 {
+    color: #2c3e50;
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+/* BUTTON STYLING */
+button {
+    background: #3498db;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background 0.3s ease-in-out;
+}
+
+button:hover {
+    background: #2980b9;
+}
+
+/* BUTTON CONTAINER */
+button:nth-child(1) {
+    background: #27ae60; /* Green */
+}
+button:nth-child(2) {
+    background: #f39c12; /* Orange */
+}
+button:nth-child(3) {
+    background: #8e44ad; /* Purple */
+}
+button:nth-child(4) {
+    background: #e67e22; /* Dark Orange */
+}
+button:nth-child(5) {
+    background: #c0392b; /* Red */
+}
+
+button:nth-child(1):hover {
+    background: #219150;
+}
+button:nth-child(2):hover {
+    background: #e08e0b;
+}
+button:nth-child(3):hover {
+    background: #732d91;
+}
+button:nth-child(4):hover {
+    background: #cf6a19;
+}
+button:nth-child(5):hover {
+    background: #a93226;
+}
+
+/* FORM CONTAINER */
+#forms {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* FORM STYLING */
+.form-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    margin: 10px;
+    text-align: left;
+    transition: transform 0.3s ease-in-out;
+}
+
+.form-container:hover {
+    transform: scale(1.05);
+}
+
+h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* INPUT FIELDS */
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* LOGOUT BUTTON */
+button:last-of-type {
+    background: #e74c3c;
+    margin-top: 20px;
+}
+
+button:last-of-type:hover {
+    background: #c0392b;
+}
+
+/* RESPONSIVE: 2 Columns for Medium Screens */
+@media (max-width: 900px) {
+    .form-container {
+        width: 80%;
+    }
+}
+
+/* RESPONSIVE: Full Width on Small Screens */
+@media (max-width: 600px) {
+    .form-container {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+        margin: 5px 0;
+    }
+}

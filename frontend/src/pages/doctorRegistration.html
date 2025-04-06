@@ -3,21 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Appointment</title>
-    <link rel="stylesheet" href="../../styles/book.css">
+    <title>Doctor Registration</title>
+    <link rel="stylesheet" href="../styles/doctorRegistration.css">
 </head>
 <body>
     <div class="container">
-        <h2>Book an Appointment</h2>
-        <form id="appointmentForm">
-            <!-- Specialization Dropdown -->
+        <h2>Doctor Profile Registration</h2>
+        <form id="doctorRegistrationForm">
+            <input type="hidden" id="userId"> <!-- Store userId from URL -->
+            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <!-- <input type="text" id="specialization" placeholder="Specialization" required> -->
             <label for="specialization">Specialization:</label>
-            <select id="specialization" name="specialization" onchange="fetchDoctors()">
+            <select id="specialization" name="specialization" required>
                 <option value="">Select Specialization</option>
-                <!-- <option value="Cardiologist">Cardiologist</option>
-                <option value="Dermatologist">Dermatologist</option>
-                <option value="Oncologist">Oncologist</option>
-                <option value="Gynecologist">Gynecologist</option> -->
                 <option value="Gynecology">Gynecology</option>
                 <option value="Orthopedics">Orthopedics</option>
                 <option value="Dermatology">Dermatology</option>
@@ -49,36 +48,10 @@
                 <option value="Dental Surgery">Dental Surgery</option>
                 <option value="Critical Care Medicine">Critical Care Medicine</option>
             </select>
-
-            <!-- Doctors Dropdown (Dynamic) -->
-            <label for="doctor">Doctors Available:</label>
-            <select id="doctor" name="doctor" onchange="updateFee()">
-                <option value="">Select Doctor</option>
-            </select>
-
-            <!-- Consultancy Fee (Dynamic) -->
-            <label for="fee">Consultancy Fee:</label>
-            <input type="text" id="fee" name="fee" readonly>
-
-            <!-- Appointment Date -->
-            <label for="date">Appointment Date:</label>
-            <input type="date" id="date" name="date" required>
-
-            <!-- Appointment Time -->
-            <label for="time">Appointment Time:</label>
-            <select id="time" name="time">
-                <option value="">Select Time</option>
-                <option value="10:00 AM">10:00 AM</option>
-                <option value="12:00 PM">12:00 PM</option>
-                <option value="2:00 PM">2:00 PM</option>
-                <option value="4:00 PM">4:00 PM</option>
-            </select>
-
-            <!-- Submit Button -->
-            <button type="submit">Book Appointment</button>
+            <input type="number" id="fees" placeholder="Consultation Fees" required>
+            <button type="submit">Submit</button>
         </form>
     </div>
-
-    <script src="../../scripts/appointments/book.js"></script>
+    <script src="../scripts/doctorRegistration.js"></script>
 </body>
 </html>

@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <td id="status-${appointment._id}">${appointment.status}</td>
                     <td>
                         <button onclick="markAsCompleted('${appointment._id}')">Mark as Completed</button>
+                        <button onclick="openPrescriptionForm('${appointment._id}', '${appointment.patientId._id}', '${appointment.patientId.name}')">Prescribe Medicine</button>
                     </td>
                 `;
                 appointmentsTable.appendChild(row);
@@ -80,5 +81,8 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error("Error updating appointment status:", error);
         }
     };
+    window.openPrescriptionForm = function openPrescriptionForm(appointmentId, patientId, patientName) {
+        window.open(`../pages/prescriptions.html?appointmentId=${appointmentId}&patientId=${patientId}&patientName=${encodeURIComponent(patientName)}`, "_blank", "width=600,height=500");
+    }    
 });
 

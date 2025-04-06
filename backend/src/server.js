@@ -9,6 +9,7 @@ const appointmentRoutes = require("./routes/appointmentRoutes");
 const Patient=require("./models/patient");
 const Doctor = require("./models/doctor");
 const Appointment= require("./models/appointmentsentry");
+const prescriptionRoutes = require("./routes/prescriptionRoutes");
 
 
 // const doctorRoutes = require("./routes/doctorRoutes"); // Import doctor routes
@@ -27,6 +28,7 @@ app.use("/api/doctors", doctorRoutes);
 app.use("/api/appointments", appointmentRoutes);  
 // app.use("/api/doctors", doctorRoutes);
 // app.use("/users", userRoutes);
+app.use("/api/prescriptions", prescriptionRoutes);
 
 mongoose.connect('mongodb://127.0.0.1:27017/test')
 .then(()=>{

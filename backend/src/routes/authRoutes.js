@@ -147,7 +147,7 @@ router.post("/register", async (req, res) => {
         console.log(" User registered successfully:", username);
 
         console.log("Checking role:", role);
-        console.log("Extracted patientDetails:", patientDetails);
+        //console.log("Extracted patientDetails:", patientDetails);
 
 
         if (role === "patient") {
@@ -185,7 +185,11 @@ router.post("/register", async (req, res) => {
             await newPatient.save();
             console.log("Patient record created successfully.");
         }
-        res.status(201).json({ message: "User registered successfully!" });
+        res.status(201).json({ message: "User registered successfully!",    user: {
+            _id: newUser._id,
+            username: newUser.username,
+            role: newUser.role
+        } });
     } catch (e) {
         console.error(" Error registering user:", e);
         res.status(500).json({ error: "Error registering user", details: e.message });
@@ -217,7 +221,7 @@ router.post("/login", async (req, res) => {
             // Fetch patient data
             const patient = await Patient.findOne({ userId: user._id });
             if (patient) {
-                return res.json({ token, role: user.role, patient });
+                return res.json({ token, role: user.role, patient, patientId: patient._id    });
             } else {
                 return res.json({ token, role: user.role, message: "No data available. Please complete registration." });
             }

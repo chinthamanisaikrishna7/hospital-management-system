@@ -31,9 +31,18 @@ document.getElementById("registerForm").addEventListener("submit", async (e)=> {
             body: JSON.stringify(userData)
         });
         const data = await res.json();
+        console.log("Response Data:", data);
         if (res.ok) {
             alert("Registration successful! Please login.");
-            window.location.href = "../pages/login.html";
+            const userId = data.user._id;
+            const role = data.user.role;
+            // If doctor, redirect to doctor registration page
+            if (role === "doctor") {
+                window.location.href = `../pages/doctorRegistration.html?userId=${userId}`;
+            } else {
+                window.location.href = "../pages/login.html"; // Other users go to login
+            }
+            // window.location.href = "../pages/login.html";
         } else {
             alert("Error during registration: " + (data.error || "Unknown error"));
             console.error("Registration error:", data);

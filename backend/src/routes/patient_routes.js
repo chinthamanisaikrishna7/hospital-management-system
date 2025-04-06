@@ -13,7 +13,7 @@ const roleMiddleware = require("../middleware/roleMiddleware");
 router.post("/",authMiddleware, roleMiddleware(["admin", "doctor"]), createpatient);
 router.get("/getallpatients", authMiddleware, roleMiddleware(["admin", "doctor","receptionist"]), getAllpatients);
 router.get("/:id", authMiddleware, roleMiddleware(["admin", "doctor","receptionist","patient"]), getpatientById);
-router.put("/:id", authMiddleware, roleMiddleware(["admin", "doctor"]),  updatepatient);
+router.put("/:patientId", authMiddleware, roleMiddleware(["admin", "doctor"]),  updatepatient);
 router.delete("/:id", authMiddleware, roleMiddleware(["admin"]), deletepatient  );
 router.get("/me", authMiddleware, roleMiddleware(["patient"]),personalinfo)
 

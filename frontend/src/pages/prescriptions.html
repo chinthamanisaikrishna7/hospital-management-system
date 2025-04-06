@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prescribe Medicine</title>
+    <!-- <link rel="stylesheet" href="../styles/prescription.css"> -->
+</head>
+<body>
+    <h2>Prescribe Medicine for <span id="patientName"></span></h2>
+    <form id="prescriptionForm">
+        <input type="hidden" id="appointmentId">
+        <input type="hidden" id="patientId">
+
+        <label>Disease Description:</label>
+        <textarea id="diseaseDescription" required></textarea>
+
+        <label>Prescription:</label>
+        <textarea id="prescription" required></textarea>
+
+        <button type="submit">Save Prescription</button>
+    </form>
+
+    <script src="../scripts/prescription.js"></script>
+</body>
+</html>

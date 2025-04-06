@@ -65,16 +65,31 @@ exports.createpatient = async (req, res) => {
 };
 
   
+  // exports.updatepatient = async (req, res) => {
+  //   try {
+  //     // const username = req.user.username;
+  //     const userId = req.user.userId;
+  //     const updatedpatient = await Patient.findOneAndUpdate({userId}, req.body, { new: true });
+  //     res.json(updatedpatient);
+  //   } catch (err) {
+  //     res.status(500).json({ error: err.message });
+  //   }
+  // };
+
   exports.updatepatient = async (req, res) => {
     try {
-      // const username = req.user.username;
-      const userId = req.user.userId;
-      const updatedpatient = await Patient.findOneAndUpdate({userId}, req.body, { new: true });
-      res.json(updatedpatient);
+        const { patientId } = req.params;  // Get patient ID from request params
+        const updatedPatient = await Patient.findByIdAndUpdate(patientId, req.body, { new: true });
+
+        if (!updatedPatient) {
+            return res.status(404).json({ error: "Patient not found" });
+        }
+
+        res.json(updatedPatient);
     } catch (err) {
-      res.status(500).json({ error: err.message });
+        res.status(500).json({ error: err.message });
     }
-  };
+};
   
   exports.deletepatient = async (req, res) => {
     try {
