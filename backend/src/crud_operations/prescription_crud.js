@@ -4,7 +4,7 @@ const Appointment = require("../models/appointmentsentry");
 
 exports.createPrescription = async (req, res) => {
     try {
-        const { patientId, doctorId, diseaseDescription, prescription } = req.body;
+        const { appointmentId, patientId, doctorId, diseaseDescription, prescription } = req.body;
 
         // Fetch doctor details
         const doctor = await Doctor.findOne({ _id: doctorId });
@@ -14,13 +14,15 @@ exports.createPrescription = async (req, res) => {
         const latestAppointment = await Appointment.findOne({ patientId, doctorId }).sort({ date: -1 });
         if (!latestAppointment) return res.status(404).json({ error: "No appointment found" });
 
+        const appointment = await Appointment.findById(appointmentId);
+        if (!appointment) return res.status(404).json({ error: "Appointment not found" });
         // Create prescription with doctor details & appointment date
         const newPrescription = new Prescription({
             patientId,
             doctorId,
             doctorName: doctor.name,
             doctorSpecialization: doctor.specialization,
-            date: latestAppointment.date,
+            date: appointment.date,
             diseaseDescription,
             prescription
         });
@@ -49,6 +51,7 @@ exports.getPrescriptionsByPatient = async (req, res) => {
         const prescriptions = await Prescription.find({ patientId });
         res.status(200).json(prescriptions);
     } catch (err) {
+        console.error("Error fetching prescriptions:", err);
         res.status(500).json({ error: err.message });
     }
 };

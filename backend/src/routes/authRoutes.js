@@ -221,7 +221,7 @@ router.post("/login", async (req, res) => {
             // Fetch patient data
             const patient = await Patient.findOne({ userId: user._id });
             if (patient) {
-                return res.json({ token, role: user.role, patient });
+                return res.json({ token, role: user.role, patient, patientId: patient._id    });
             } else {
                 return res.json({ token, role: user.role, message: "No data available. Please complete registration." });
             }
