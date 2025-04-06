@@ -1,5 +1,5 @@
 const express = require("express");
-const { bookAppointment, getPatientAppointments, getDoctorAppointments } = require("../crud_operations/appointments");
+const { bookAppointment, getPatientAppointments, getDoctorAppointments, updateAppointmentStatus, getAllAppointments } = require("../crud_operations/appointments");
 const authMiddleware = require("../middleware/authMiddleware");
 const roleMiddleware = require("../middleware/roleMiddleware");
 const Appointment = require("../models/appointmentsentry");
@@ -14,6 +14,8 @@ router.get("/history", authMiddleware, roleMiddleware(["patient"]), getPatientAp
 // ✅ 3. Route to get appointments for a doctor (Only "doctor" can see their appointments)
 router.get("/doctor/:id", authMiddleware, roleMiddleware(["doctor"]), getDoctorAppointments);
 
+router.put("/update-status", authMiddleware, roleMiddleware(["receptionist"]), updateAppointmentStatus);
+router.get("/all", authMiddleware, roleMiddleware(["receptionist"]), getAllAppointments);
 
 router.put("/:appointmentId", authMiddleware, roleMiddleware(["doctor"]), async (req, res) => {
     try {

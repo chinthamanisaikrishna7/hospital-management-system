@@ -103,3 +103,30 @@ exports.getDoctorAppointments = async (req, res) => {
       res.status(500).json({ message: err.message });
   }
 };
+
+// 👇 Add in appointments.js controller
+exports.updateAppointmentStatus = async (req, res) => {
+  const { appointmentId, status } = req.body;
+  try {
+    const updated = await Appointment.findByIdAndUpdate(
+      appointmentId,
+      { status },
+      { new: true }
+    );
+    res.json({ message: "Appointment status updated", appointment: updated });
+  } catch (err) {
+    res.status(500).json({ message: "Error updating status" });
+  }
+};
+
+exports.getAllAppointments = async (req, res) => {
+  try {
+    const appointments = await Appointment.find()
+      .populate("patientId", "name age gender")
+      .populate("doctorId", "name specialization");
+    res.json(appointments);
+  } catch (err) {
+    console.error("Error fetching all appointments:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
