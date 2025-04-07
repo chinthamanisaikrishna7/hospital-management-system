@@ -96,7 +96,7 @@ async function fetchAppointments() {
     const appointments = await res.json();
   
     const pending = appointments.filter(a => a.status === "Pending");
-    const confirmed = appointments.filter(a => a.status === "Confirmed");
+    const confirmed = appointments.filter(a => a.status === "Booked");
   
     // Render Pending
     const pendingDiv = document.getElementById("pendingAppointments");
@@ -108,6 +108,8 @@ async function fetchAppointments() {
         <p>Doctor: ${app.doctorId.name}</p>
         <p>Date: ${app.date} | Time: ${app.time}</p>
         <button onclick="confirmAppointment('${app._id}')">Confirm</button>
+
+    <button onclick="cancelAppointment('${app._id}')">Cancel</button>
       `;
       pendingDiv.appendChild(div);
     });
@@ -131,14 +133,20 @@ async function fetchAppointments() {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-      body: JSON.stringify({ appointmentId, status: "Confirmed" }),
+    //   body: JSON.stringify({ appointmentId, status: "Confirmed" }),
+      body: JSON.stringify({ appointmentId, status: "Booked" }),
     });
     if (res.ok) {
       alert("Appointment confirmed!");
       fetchAppointments(); // refresh list
+      buttons.forEach(btn => btn.disabled = false);
     }
+    else {
+        alert("Failed to confirm.");
+        
+      }
   }
-  async function fetchAllAppointments() {
+  async function fetchAllAppointments(status) {
     const token = localStorage.getItem("token");
     const response = await fetch("http://localhost:5000/api/appointments/all", {
       method: "GET",
@@ -148,22 +156,56 @@ async function fetchAppointments() {
     });
   
     const data = await response.json();
-    console.log("📋 All Appointments:", data);
+    console.log("", data);
   
     const container = document.getElementById("allAppointments");
-    container.innerHTML = "";
+    container.innerHTML = `<h3>${status} Appointments</h3>`;
   
     data.forEach(appointment => {
       const div = document.createElement("div");
       div.innerHTML = `
-        <p><strong>Patient:</strong> ${appointment.patientId.name}</p>
-        <p><strong>Doctor:</strong> ${appointment.doctorId.name}</p>
-        <p><strong>Date:</strong> ${appointment.date}</p>
-        <p><strong>Status:</strong> ${appointment.status}</p>
-        <hr/>
+      <p><strong>Patient:</strong> ${appointment.patientId.name}</p>
+      <p><strong>Doctor:</strong> ${appointment.doctorId.name}</p>
+      <p><strong>Date:</strong> ${appointment.date}</p>
+      <p><strong>Time:</strong> ${appointment.time}</p>
+      <p><strong>Status:</strong> ${appointment.status}</p>
+    ${appointment.status !== "Cancelled" && appointment.status !== "Completed" 
+      ? `<button onclick="cancelAppointment('${appointment._id}')">Cancel</button>`
+      : `<p><em>Cannot cancel (${appointment.status})</em></p>`}
+      <hr/>
       `;
       container.appendChild(div);
     });
+  }
+
+  async function cancelAppointment(appointmentId) {
+    const confirmCancel = confirm("Are you sure you want to cancel this appointment?");
+    if (!confirmCancel) return;
+  
+    const token = localStorage.getItem("token");
+    const response = await fetch("http://localhost:5000/api/appointments/update-status", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        appointmentId,
+        status: "Cancelled"
+      })
+    });
+  
+    const result = await response.json();
+    if (response.ok) {
+      alert("Appointment cancelled successfully.");
+      // Optional: reload current list to reflect changes
+      fetchAppointments("Pending");
+      buttons.forEach(btn => btn.disabled = false);
+    } else {
+      alert("Failed to cancel appointment: " + result.message);
+      alert("Failed to cancel: " + result.message);
+      buttons.forEach(btn => btn.disabled = false);
+    }
   }
   
 

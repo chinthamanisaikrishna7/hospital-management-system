@@ -119,11 +119,29 @@ exports.updateAppointmentStatus = async (req, res) => {
   }
 };
 
+// exports.getAllAppointments = async (req, res) => {
+//   try {
+//     const appointments = await Appointment.find()
+//       .populate("patientId", "name age gender")
+//       .populate("doctorId", "name specialization");
+//     res.json(appointments);
+//   } catch (err) {
+//     console.error("Error fetching all appointments:", err);
+//     res.status(500).json({ message: "Server error" });
+//   }
+// };
+
 exports.getAllAppointments = async (req, res) => {
   try {
-    const appointments = await Appointment.find()
+    const filter = {};
+    if (req.query.status) {
+      filter.status = req.query.status;
+    }
+
+    const appointments = await Appointment.find(filter)
       .populate("patientId", "name age gender")
       .populate("doctorId", "name specialization");
+
     res.json(appointments);
   } catch (err) {
     console.error("Error fetching all appointments:", err);

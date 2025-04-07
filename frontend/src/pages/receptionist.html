@@ -13,10 +13,12 @@
     
     <h3>Confirmed Appointments</h3>
     <div id="confirmedAppointments"></div>
+    <button onclick="fetchAppointments('Pending')">Pending Appointments</button>
+<button onclick="fetchAppointments('Confirmed')">Confirmed Appointments</button>
+<div id="appointmentList"></div>
     <button onclick="fetchAllAppointments()">Show All Appointments</button>
 <div id="allAppointments"></div>
 
-    <!-- <button onclick="showForm('createPatientForm')">Create Patient</button> -->
     <button onclick="showForm('searchPatientForm')">Search Patient</button>
     <button onclick="getAllPatients()">Get All Patients</button>
 
