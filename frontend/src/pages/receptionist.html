@@ -1,55 +1,29 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Receptionist Panel</title>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles/receptionist.css">
 </head>
 <body>
     <h2>Receptionist Dashboard</h2>
+    <h3>Pending Appointments</h3>
+    <div id="pendingAppointments"></div>
+    
+    <h3>Confirmed Appointments</h3>
+    <div id="confirmedAppointments"></div>
+    <button onclick="fetchAppointments('Pending')">Pending Appointments</button>
+<button onclick="fetchAppointments('Confirmed')">Confirmed Appointments</button>
+<div id="appointmentList"></div>
+    <button onclick="fetchAllAppointments()">Show All Appointments</button>
+<div id="allAppointments"></div>
 
-    <!-- <button onclick="showForm('createPatientForm')">Create Patient</button> -->
     <button onclick="showForm('searchPatientForm')">Search Patient</button>
     <button onclick="getAllPatients()">Get All Patients</button>
 
     <div id="forms">
-        <!-- Create Patient Form -->
-        <!-- <div id="createPatientForm" class="form-container" style="display: none;">
-            <h3>Create Patient</h3> -->
-            <!-- <input type="text" id="name" placeholder="Name">
-            <input type="number" id="age" placeholder="Age">
-            <input type="text" id="gender" placeholder="Gender">
-            <input type="text" id="contactNumber" placeholder="Contact Number">
-            <input type="text" id="email" placeholder="Email">
-            <input type="text" id="address" placeholder="Address">
-            <input type="text" id="bloodGroup" placeholder="Blood Group">
-            <input type="text" id="disease" placeholder="Disease"> -->
-            <!-- <input type="text" id="name" placeholder="Full Name">
-            <input type="number" id="age" placeholder="Age">
-            <select id="gender">
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-            </select>
-            <input type="text" id="contactNumber" placeholder="Contact Number">
-            <input type="email" id="email" placeholder="Email">
-            <input type="text" id="address" placeholder="Address">
-            <select id="bloodGroup">
-                <option value="A+">A+</option>
-                <option value="A-">A-</option>
-                <option value="B+">B+</option>
-                <option value="B-">B-</option>
-                <option value="O+">O+</option>
-                <option value="O-">O-</option>
-                <option value="AB+">AB+</option>
-                <option value="AB-">AB-</option>
-            </select>
-            <input type="text" id="disease" placeholder="Disease">
-            <button onclick="createPatient()">Submit</button>
-        </div> -->
 
-        <!-- Search Patient Form -->
         <div id="searchPatientForm" class="form-container" style="display: none;">
             <h3>Search Patient</h3>
             <input type="text" id="searchId" placeholder="Enter Patient ID">
@@ -65,4 +39,56 @@
 
     <script src="../scripts/receptionist.js"></script>
 </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Receptionist Panel</title>
+  <link rel="stylesheet" href="../styles/receptionist.css"/>
+</head>
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <h2>Receptionist</h2>
+      <button onclick="fetchAppointments()">📋 View Appointments</button>
+      <button onclick="fetchAllAppointments()">📅 All Appointments</button>
+      <button onclick="showForm('searchPatientForm')">🔍 Search Patient</button>
+      <button onclick="getAllPatients()">👥 All Patients</button>
+      <button onclick="logout()">🚪 Logout</button>
+    </aside>
+
+    <main class="main-content">
+      <section>
+        <h3>Pending Appointments</h3>
+        <div id="pendingAppointments" class="table-container"></div>
+      </section>
+
+      <section>
+        <h3>Confirmed Appointments</h3>
+        <div id="confirmedAppointments" class="table-container"></div>
+      </section>
+
+      <section>
+        <h3>All Appointments</h3>
+        <div id="allAppointments" class="table-container"></div>
+      </section>
+
+      <section id="forms">
+        <div id="searchPatientForm" class="form-container" style="display: none;">
+          <h3>Search Patient</h3>
+          <input type="text" id="searchId" placeholder="Enter Patient ID"/>
+          <button onclick="searchPatient()">Search</button>
+          <div id="searchResult"></div>
+        </div>
+        <div id="allPatientsList"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../scripts/receptionist.js"></script>
+</body>
 </html>
+

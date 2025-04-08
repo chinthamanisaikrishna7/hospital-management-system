@@ -39,9 +39,21 @@ exports.bookAppointment =  async (req, res) => {
       fees: doctor.fees,
       status: "Pending",
     });
-
-    await appointment.save();
-    res.status(201).json({ message: "Appointment booked successfully!" });
+    const existingAppointment = await Appointment.findOne({
+      doctorId: req.body.doctorId,
+      date: req.body.date,
+      time: req.body.time,
+      status: { $in: ["Pending", "Booked"] } // Active appointments
+    });
+    
+    if (existingAppointment) {
+      return res.status(400).json({ message: "Doctor is not available at this time slot. Please choose another time." });
+    }
+    else{
+      await appointment.save();
+      res.status(201).json({ message: "Appointment booked successfully!" });
+    }
+    
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -101,5 +113,50 @@ exports.getDoctorAppointments = async (req, res) => {
       res.json(appointments);
   } catch (err) {
       res.status(500).json({ message: err.message });
+  }
+};
+
+// 👇 Add in appointments.js controller
+exports.updateAppointmentStatus = async (req, res) => {
+  const { appointmentId, status } = req.body;
+  try {
+    const updated = await Appointment.findByIdAndUpdate(
+      appointmentId,
+      { status },
+      { new: true }
+    );
+    res.json({ message: "Appointment status updated", appointment: updated });
+  } catch (err) {
+    res.status(500).json({ message: "Error updating status" });
+  }
+};
+
+// exports.getAllAppointments = async (req, res) => {
+//   try {
+//     const appointments = await Appointment.find()
+//       .populate("patientId", "name age gender")
+//       .populate("doctorId", "name specialization");
+//     res.json(appointments);
+//   } catch (err) {
+//     console.error("Error fetching all appointments:", err);
+//     res.status(500).json({ message: "Server error" });
+//   }
+// };
+
+exports.getAllAppointments = async (req, res) => {
+  try {
+    const filter = {};
+    if (req.query.status) {
+      filter.status = req.query.status;
+    }
+
+    const appointments = await Appointment.find(filter)
+      .populate("patientId", "name age gender")
+      .populate("doctorId", "name specialization");
+
+    res.json(appointments);
+  } catch (err) {
+    console.error("Error fetching all appointments:", err);
+    res.status(500).json({ message: "Server error" });
   }
 };
