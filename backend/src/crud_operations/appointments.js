@@ -39,9 +39,21 @@ exports.bookAppointment =  async (req, res) => {
       fees: doctor.fees,
       status: "Pending",
     });
-
-    await appointment.save();
-    res.status(201).json({ message: "Appointment booked successfully!" });
+    const existingAppointment = await Appointment.findOne({
+      doctorId: req.body.doctorId,
+      date: req.body.date,
+      time: req.body.time,
+      status: { $in: ["Pending", "Booked"] } // Active appointments
+    });
+    
+    if (existingAppointment) {
+      return res.status(400).json({ message: "Doctor is not available at this time slot. Please choose another time." });
+    }
+    else{
+      await appointment.save();
+      res.status(201).json({ message: "Appointment booked successfully!" });
+    }
+    
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

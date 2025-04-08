@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Receptionist Panel</title>
-    <!-- <link rel="stylesheet" href="../styles.css"> -->
+    <link rel="stylesheet" href="../styles/receptionist.css">
 </head>
 <body>
     <h2>Receptionist Dashboard</h2>
@@ -23,7 +23,7 @@
     <button onclick="getAllPatients()">Get All Patients</button>
 
     <div id="forms">
-        <!-- Search Patient Form -->
+
         <div id="searchPatientForm" class="form-container" style="display: none;">
             <h3>Search Patient</h3>
             <input type="text" id="searchId" placeholder="Enter Patient ID">
@@ -39,4 +39,56 @@
 
     <script src="../scripts/receptionist.js"></script>
 </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Receptionist Panel</title>
+  <link rel="stylesheet" href="../styles/receptionist.css"/>
+</head>
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <h2>Receptionist</h2>
+      <button onclick="fetchAppointments()">📋 View Appointments</button>
+      <button onclick="fetchAllAppointments()">📅 All Appointments</button>
+      <button onclick="showForm('searchPatientForm')">🔍 Search Patient</button>
+      <button onclick="getAllPatients()">👥 All Patients</button>
+      <button onclick="logout()">🚪 Logout</button>
+    </aside>
+
+    <main class="main-content">
+      <section>
+        <h3>Pending Appointments</h3>
+        <div id="pendingAppointments" class="table-container"></div>
+      </section>
+
+      <section>
+        <h3>Confirmed Appointments</h3>
+        <div id="confirmedAppointments" class="table-container"></div>
+      </section>
+
+      <section>
+        <h3>All Appointments</h3>
+        <div id="allAppointments" class="table-container"></div>
+      </section>
+
+      <section id="forms">
+        <div id="searchPatientForm" class="form-container" style="display: none;">
+          <h3>Search Patient</h3>
+          <input type="text" id="searchId" placeholder="Enter Patient ID"/>
+          <button onclick="searchPatient()">Search</button>
+          <div id="searchResult"></div>
+        </div>
+        <div id="allPatientsList"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../scripts/receptionist.js"></script>
+</body>
 </html>
+
